@@ -3,10 +3,15 @@ import path from "path"
 import { ENV } from "./config/env";
 import { connectDB } from "./config/db";
 import { clerkMiddleware } from '@clerk/express'
+import { serve } from "inngest/express";
+import { inngest, functions } from "./config/inngest"
 
 
 const app = express();
+app.use(express.json());
 app.use(clerkMiddleware());
+app.use("/api/inngest", serve({ client: inngest, functions }));
+
 
 const __dirname = path.resolve();
 
