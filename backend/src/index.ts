@@ -1,10 +1,12 @@
 import express, { type Request, type Response } from "express"
 import path from "path"
 import { ENV } from "./config/env";
+import { connectDB } from "./config/db";
+import { clerkMiddleware } from '@clerk/express'
 
 
 const app = express();
-
+app.use(clerkMiddleware());
 
 const __dirname = path.resolve();
 
@@ -28,5 +30,6 @@ if (ENV.NODE_ENV === "production") {
 
 
 app.listen(PORT, () => {
+  connectDB();
   console.log(`Server is running on http://localhost:${PORT}`);
 })
