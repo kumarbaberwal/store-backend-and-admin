@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": ""
+    "build": "bun install --cwd backend && bun install --cwd admin && bun --cwd admin build",
+    "start": "bun --cwd backend start"
   },
   "devDependencies": {
     "@types/bun": "latest"

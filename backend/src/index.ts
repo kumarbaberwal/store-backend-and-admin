@@ -9,7 +9,7 @@ const app = express();
 const __dirname = path.resolve();
 
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/api/health", (req: Request, res: Response) => {
   res.status(200).json({
     message: "Hello Kumar",
   })
