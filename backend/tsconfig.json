@@ -1,28 +1,16 @@
 {
   "compilerOptions": {
-    // Environment setup & latest features
-    "lib": [
-      "ESNext"
-    ],
-    "target": "ESNext",
-    "module": "ESNext",
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "outDir": "./dist",
+    "target": "es6",
+    "module": "commonjs",
     "rootDir": "./src",
-    "esModuleInterop": true,
-    // Best practices
+    "outDir": "./dist",
     "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "esModuleInterop": true
   },
   "include": [
-    "src"
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
   ]
 }
