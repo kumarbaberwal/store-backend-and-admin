@@ -1,19 +1,7 @@
 {
-  "version": 3,
-  "functions": {
-    "api/health": {
-      "runtime": "nodejs22.x",
-      "entrypoint": "backend/dist/index.js"
-    }
-  },
+  "version": 2,
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/health"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/admin/dist/index.html"
-    }
+    { "source": "/api/(.*)", "destination": "/backend/src/index.ts" },
+    { "source": "/(.*)", "destination": "/admin/dist/index.html" }
   ]
 }
