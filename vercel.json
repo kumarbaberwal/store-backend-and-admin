@@ -1,18 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/index.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "admin/dist/**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/index.ts" },
-
-    { "src": "/(.*)", "dest": "admin/dist/index.html" }
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.ts" },
+    { "source": "/(.*)", "destination": "/admin/dist/index.html" }
   ]
 }
