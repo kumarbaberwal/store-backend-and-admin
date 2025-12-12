@@ -1,10 +1,10 @@
 import express, { type Request, type Response } from "express"
 import path from "path"
-import { ENV } from "./config/env";
-import { connectDB } from "./config/db";
+import { ENV } from "./config/env.ts";
+import { connectDB } from "./config/db.ts";
 import { clerkMiddleware } from '@clerk/express'
 import { serve } from "inngest/express";
-import { inngest, functions } from "./config/inngest"
+import { inngest, functions } from "./config/inngest.ts"
 
 
 const app = express();
