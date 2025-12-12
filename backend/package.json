@@ -4,7 +4,6 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "tsc",
     "dev": "bun --watch src/index.ts",
     "start": "bun src/index.ts"
   },
