@@ -6,7 +6,7 @@
       "src": "admin/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "."
+        "distDir": "admin/dist"
       }
     },
     {
@@ -25,7 +25,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/admin/index.html"
+      "dest": "/admin/dist/index.html"
     }
   ]
 }
