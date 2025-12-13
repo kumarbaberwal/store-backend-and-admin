@@ -21,15 +21,15 @@ app.get("/api/health", (req, res) => {
 
 const PORT = ENV.PORT;
 
-if (ENV.NODE_ENV === "production") {
-  const adminDist = path.join(__dirname, "../../admin/dist");
+// if (ENV.NODE_ENV === "production") {
+//   const adminDist = path.join(__dirname, "../../admin/dist");
 
-  app.use(express.static(adminDist));
+//   app.use(express.static(adminDist));
 
-  app.get("/{*any}", (req, res) => {
-    res.sendFile(path.join(adminDist, "index.html"));
-  });
-}
+//   app.get("/{*any}", (req, res) => {
+//     res.sendFile(path.join(adminDist, "index.html"));
+//   });
+// }
 
 const startServer = async () => {
   await connectDB();
