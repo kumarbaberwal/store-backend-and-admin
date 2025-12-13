@@ -3,10 +3,10 @@
 
   "builds": [
     {
-      "src": "admin/package.json",
+      "src": "admin/dist/index.html",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "admin/dist"
+        "distDir": "admin"
       }
     },
     {
