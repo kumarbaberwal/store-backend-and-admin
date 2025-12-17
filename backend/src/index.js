@@ -6,6 +6,7 @@ import { connectDB } from "./config/db.js";
 import { clerkMiddleware } from "@clerk/express";
 import { serve } from "inngest/express";
 import { inngest, functions } from "./config/inngest.js";
+import adminRoutes from "../src/routes/admin.route.js";
 
 const app = express();
 app.use(express.json());
@@ -14,6 +15,8 @@ app.use("/api/inngest", serve({ client: inngest, functions }));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+app.use("/api/admin", adminRoutes);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Hello Kumar" });
@@ -39,5 +42,3 @@ const startServer = async () => {
 };
 
 startServer();
-
-export default app;
