@@ -1,7 +1,15 @@
+import { User } from "../models/user.model";
+
 export const addAddress = async (req, res) => {
   try {
     const { label, fullName, streetAddress, city, state, zipCode, phoneNumber, isDefault } = req.body;
     const user = req.user;
+
+    if (!fullName || !streetAddress || !city || !state || !zipCode) {
+      return res.status(400).json({
+        error: "Missing required address fields"
+      })
+    }
 
     // if this is set to default, unset all other defaults
     if (isDefault) {
@@ -158,7 +166,7 @@ export const removeFromWishlist = async (req, res) => {
     // check if product is not in the wishlist
     if (!user.wishlist.includes(productId)) {
       return res.status(400).json({
-        error: "Product is not even in wishlist"
+        error: "Product not found in wishlist"
       })
     }
     user.wishlist.pull(productId);
@@ -182,7 +190,7 @@ export const removeFromWishlist = async (req, res) => {
 
 export const getWishlist = async (req, res) => {
   try {
-    const user = req.user;
+    const user = await User.findById(req.user._id).populate("wishlist");
     res.status(200).json({
       wishlist: user.wishlist,
     })
