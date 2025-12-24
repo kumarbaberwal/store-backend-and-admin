@@ -9,4 +9,4 @@ router.use(protectRoute);
 router.put("/", createOrder);
 router.get("/", getUserOrders);
 
-export default Router;
+export default router;
