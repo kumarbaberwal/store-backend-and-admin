@@ -58,7 +58,7 @@ export const createProduct = async (req, res) => {
 export const getAllProducts = async (req, res) => {
   try {
     // -1 means in desc order - most recent product first
-    const products = await Product.findAll().sort({ createdAt: -1 });
+    const products = await Product.find().sort({ createdAt: -1 });
     res.status(200).json(products);
   } catch (error) {
     console.error("Error fetching products: ", error);
@@ -117,6 +117,37 @@ export const updateProduct = async (req, res) => {
     res.status(500).json({
       message: "Internal Server Error"
     });
+  }
+}
+
+
+export const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({
+        message: "Product not found"
+      })
+    }
+    // Delete Images from cloudinary
+    if (product.images && product.images.length > 0) {
+      const deletePromise = product.images.map((imageUrl) => {
+        const publicId = "products/" + imageUrl.split("/products/")[1]?.split(".")[0];
+        if (publicId) return cloudinary.uploader.destroy(publicId);
+      })
+
+      await Promise.all(deleteProduct.filter(Boolean))
+    }
+    await Product.findByIdAndDelete(id);
+    res.status(200).json({
+      message: "Product deleted successfully"
+    })
+  } catch (error) {
+    console.error("Error deleting product: ", error);
+    res.status(500).json({
+      error: "Failed to delete product"
+    })
   }
 }
 
