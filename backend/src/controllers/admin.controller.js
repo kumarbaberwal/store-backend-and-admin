@@ -123,7 +123,7 @@ export const updateProduct = async (req, res) => {
 
 export const getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find().populate("user", "name email").populate("orderItems.products").sort({ createdAt: -1 });
+    const orders = await Order.find().populate("user", "name email").populate("orderItems.product").sort({ createdAt: -1 });
     res.status(200).json({ orders });
   } catch (error) {
     console.error("Error fetching all Orders: ", error);
