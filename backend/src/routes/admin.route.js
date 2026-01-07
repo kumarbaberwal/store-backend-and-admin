@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { adminOnly, protectRoute } from "../middleware/auth.middleware.js";
-import { createProduct, getAllCustomers, getAllOrders, getAllProducts, getDashboardStats, updateOrderStatus, updateProduct } from "../controllers/admin.controller.js";
+import { createProduct, deleteProduct, getAllCustomers, getAllOrders, getAllProducts, getDashboardStats, updateOrderStatus, updateProduct } from "../controllers/admin.controller.js";
 import { upload } from "../middleware/multer.middleware.js";
 
 const router = Router();
@@ -10,7 +10,8 @@ router.use(protectRoute, adminOnly)
 
 router.get("/products", getAllProducts);
 router.post("/products", upload.array("images", 3), createProduct);
-router.put("/products:id", upload.array("images", 3), updateProduct);
+router.put("/products/:id", upload.array("images", 3), updateProduct);
+router.delete("/products/:id", deleteProduct);
 
 router.get("/orders", getAllOrders);
 router.patch("/orders/:orderId/status", updateOrderStatus);
