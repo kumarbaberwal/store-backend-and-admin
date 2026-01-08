@@ -13,7 +13,6 @@ export const NAVIGATION = [
 
 export default function Navbar() {
   const location = useLocation();
-  console.log(location);
   return (
     <div className="navbar w-full bg-base-300">
       <label htmlFor="my-drawer" className="btn btn-square btn-ghost" aria-label="open sidebar">
